@@ -1,0 +1,45 @@
+@Override
+    public Comparable obtenerExcentricidad(Comparable etiquetaVertice) {
+        Double[][] matriz = this.floyd();
+        Set<Comparable> etiquetasVertices = this.vertices.keySet();
+        Comparable[] array = new Comparable[matriz.length];
+        array = etiquetasVertices.toArray(array);
+        int columna = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == etiquetaVertice){
+                columna = i;
+                break;
+            }
+        }
+        Double ex = 0.0;
+        for (int i =0; i<matriz.length; i++){
+            if(matriz[i][columna]>ex && matriz[i][columna]<Double.MAX_VALUE && matriz[i][columna]>0.0){
+                ex = matriz[i][columna];
+            }
+        }
+        if (ex == 0.0){
+            ex = Double.MAX_VALUE;
+        }
+        return ex;
+    }
+}
+
+@Override
+    public Comparable centroDelGrafo() {
+        Iterator<TVertice> it = vertices.values().iterator();
+        Comparable[] excentricidades = new Comparable[vertices.size()];
+        Comparable centro = Double.MAX_VALUE;
+        Comparable etiqueta_centro = null;
+        int i = 0;
+        while(it.hasNext()){
+            Comparable a = excentricidades[i];
+            Comparable etiqueta_vertice = it.next().getEtiqueta();
+
+            a = this.obtenerExcentricidad(etiqueta_vertice);
+            if(a.compareTo(centro) == -1){
+                centro = a;
+                etiqueta_centro = etiqueta_vertice;
+            }
+        }
+        return etiqueta_centro+" (" + centro.toString().trim()+")";
+        }

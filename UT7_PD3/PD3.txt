@@ -1,0 +1,18 @@
+(Pruebas realizadas junto con PD2)
+
+1)
+
+1. b
+2. a
+3. c
+
+2)
+
+Si, existe un camino, de longitud 2580
+Si, existe un camino de longitud 1200
+
+3)
+
+2. Orden a siendo a la cantidad de aristas del grafo.
+
+4) Hecho en UT7_PD2

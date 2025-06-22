@@ -1,0 +1,70 @@
+1)
+En TGrafoDirigido
+
+boolean tieneCiclo()
+Com:
+desvisitarVertices()
+resultado <- falso
+
+para cada vertice en this.vertices
+	si !vertice.getVisitado()
+		camino <- nueva lista enlazada
+		camino.insertar(vertice)
+		resultado <- vertice.tieneCiclo(camino)
+		si resultado == verdadero
+			devolver verdadero
+devolver resultado
+Fin tieneCiclo()
+
+En TVertice<T>
+boolean tieneCiclo(ListaEnlazada camino)
+Com:
+this.visitado <- verdadero
+camino.insertar(this.getEtiqueta())
+ciclo <- falso
+para cada adyacencia en this.adyacencias
+	v <- adyacencia.getDestino()
+	si !v.getVisitado()
+		ciclo <- v.tieneCiclo(camino)
+		si ciclo == verdadero
+			salir
+	sino
+		si camino.contiene(v.GetEtiqueta())
+			ciclo <- verdadero
+		FinSi
+	FinSi
+FinPara
+camino.eliminar(this.getEtiqueta())
+devolver ciclo
+Fin tieneCiclo
+
+2)
+En TGrafoDirigido:
+ordenTopologico()
+Com:
+ordenTopologico()
+desvisitarVertices()
+lista <- nueva ListaEnlazada
+para cada vertice en this.Vertices
+	Si !vertice.getVisitado
+		vertice.ordenTopologico(lista)
+	finsi
+finPara
+devolver lista
+Fin ordenTopologico
+
+En Tvertice<T>:
+ordenTopologico(ListaEnlazada lista)
+this.visitado <- verdadero
+Para cada adyacencia en this.adyacencias
+	destino <- adyacencia.getDestino()
+	Si !destino.getVisitado()
+		destino.ordenTopologico(lista)
+	FinSi
+FinPara
+lista.insertar(0,this)
+devolver lista
+Fin ordenTopologico
+
+- Backtrack
+
